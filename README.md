@@ -1,4 +1,4 @@
-Spring Boot + maven + Thymeleaf + myBatis を使用した
+Spring Boot + maven + Thymeleaf + myBatis + mySQL を使用した
 
 CRUD処理のサンプルです。
 
