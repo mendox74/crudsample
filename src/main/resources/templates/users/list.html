@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <title>登録者リスト - CRUD_Sample</title>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>登録者リスト</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>身長</th>
+            <th>体重</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="user:${users}" th:object="${user}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{age}"></td>
+            <td th:text="*{height}"></td>
+            <td th:text="*{weight}"></td>
+            <td><a class="btn btn-default btn-xs" th:href="@{/users/{id}(id=*{id})}">参照</a></td>
+            <td><a class="btn btn-default btn-xs" th:href="@{/users/{id}/edit(id=*{id})}">編集</a></td>
+            <td>
+              <form th:action="@{/users/{id}(id=*{id})}" th:method="delete">
+                <input class="btn btn-default btn-xs" type="submit" value="削除" />
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a class="btn btn-default" href="/users/new">新規登録</a>
+    </div>
+  </body>
+</html>
