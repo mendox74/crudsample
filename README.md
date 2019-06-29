@@ -16,5 +16,7 @@ ID、名前、年齢、身長、体重の情報を登録してリストにしま
 
 を実装しています
 
+
 MySQLでデータベース「user」を作成して
+
 application.propertiesに任意のusernameとpasswordを指定してください
