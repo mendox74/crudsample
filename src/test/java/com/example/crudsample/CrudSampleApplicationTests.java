@@ -1,4 +1,4 @@
-package com.example.CRUDSample;
+package com.example.crudsample;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
