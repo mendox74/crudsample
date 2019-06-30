@@ -10,22 +10,26 @@
   <body>
     <div class="container">
       <h1>新規登録</h1>
-      <form th:action="@{/users}" th:method="post">
-        <div class="form-group">
+      <form th:action="@{/users}" th:method="post" th:object="${user}">
+        <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
           <label class="control-label">名前</label>
-          <input class="form-control" type="text" name="name" />
+          <input class="form-control" type="text" th:field="*{name}" />
+          <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group" th:classappend="${#fields.hasErrors('age')}? has-error">
           <label class="control-label">年齢</label>
-          <input class="form-control" type="number" name="age" />
+          <input class="form-control" type="number" th:field="*{age}" />
+          <span class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group" th:classappend="${#fields.hasErrors('height')}? has-error">
           <label class="control-label">身長</label>
-          <input class="form-control" type="number" name="height" />
+          <input class="form-control" type="number" th:field="*{height}" />
+          <span class="text-danger" th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group" th:classappend="${#fields.hasErrors('weight')}? has-error">
           <label class="control-label">体重</label>
-          <input class="form-control" type="number" name="weight" />
+          <input class="form-control" type="number" th:field="*{weight}" />
+          <span class="text-danger" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></span>
         </div>
         <button class="btn btn-default" type="submit">作成</button>
       </form>
