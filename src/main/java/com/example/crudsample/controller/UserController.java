@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
+
 import com.example.crudsample.domain.User;
 import com.example.crudsample.repository.UserRepository;
 
 @Controller
 @RequestMapping("/users")
-
 public class UserController {
 	
     @Autowired
@@ -39,6 +41,8 @@ public class UserController {
      */
     @GetMapping("new")
     public String newUser(Model model) {
+    	User user = new User();
+    	model.addAttribute("user", user);
         return "users/new";
     }
     
@@ -66,7 +70,8 @@ public class UserController {
      * 新規登録の挿入
      */
     @PostMapping
-    public String create(@ModelAttribute User user) {
+    public String create(@Validated @ModelAttribute User user, BindingResult bindingResult) {
+    	if(bindingResult.hasErrors()) return "users/new";
     	userRepository.insert(user);
         return "redirect:/users";
     }
@@ -75,7 +80,8 @@ public class UserController {
      * 編集情報の更新
      */
     @PutMapping("{id}")
-    public String update(@PathVariable int id, @ModelAttribute User user) {
+    public String update(@PathVariable int id, @Validated @ModelAttribute User user, BindingResult bindingResult) {
+    	if(bindingResult.hasErrors()) return "users/edit";
     	user.setId(id);
     	userRepository.updata(user);
         return "redirect:/users";

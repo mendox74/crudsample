@@ -1,5 +1,10 @@
 package com.example.crudsample.domain;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+
 public class User {
 	
 	/*
@@ -7,15 +12,23 @@ public class User {
     private int id;
     /*
      * 名前*/
+	@NotBlank
     private String name;
     /*
      *  年齢　*/
+	@NotNull
+    @Max(130)
+    @Min(0)
     private int age;
     /*
      *  身長　*/
+	@NotNull
+    @Min(0)
     private int height;
     /*
      *  体重 */
+	@NotNull
+    @Min(0)
     private int weight;
 
     public int getId() {
